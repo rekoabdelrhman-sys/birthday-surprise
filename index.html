@@ -6,8 +6,8 @@
     <title>Happy Birthday Ya Habibi!</title>
     <style>
         body {
-            /* Beautiful Blue Background */
-            background: linear-gradient(135deg, #a1c4fd 0%, #8fd3f4 100%);
+            /* The purple/blue gradient from your original photo */
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
             font-family: 'Arial Black', Impact, sans-serif;
             text-align: center;
             display: flex;
@@ -17,132 +17,62 @@
             min-height: 100vh;
             margin: 0;
             overflow-x: hidden;
-            padding-top: 40px;
+            padding-top: 30px;
         }
 
-        /* Bubbly Text Styling - Purple with White/Dark outline */
         h1 {
-            color: #d896ff;
+            color: white;
             font-size: 3.5rem;
-            margin: 0 20px 40px 20px;
+            margin: 0 20px 20px 20px;
             letter-spacing: 2px;
             text-shadow: 
-                -2px -2px 0 #fff, 2px -2px 0 #fff, 
-                -2px 2px 0 #fff, 2px 2px 0 #fff,
-                4px 4px 0px #5e1b99;
+                -3px -3px 0 #8a2be2, 3px -3px 0 #8a2be2, 
+                -3px 3px 0 #8a2be2, 3px 3px 0 #8a2be2,
+                6px 6px 0px #5e1b99;
             line-height: 1.2;
             z-index: 10;
         }
 
-        /* --- 3-Tier Chocolate Cake --- */
+        /* --- The Cake Image Wrapper --- */
         #cake-wrapper {
             position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-top: 40px;
+            margin-top: 20px;
+            max-width: 500px; /* Adjust based on your image size */
         }
 
-        /* Cake Cylinders */
-        .tier {
-            position: relative;
-            background-color: #5D4037; /* Lighter chocolate top surface */
-            border-radius: 50%;
+        #cake-image {
+            width: 100%;
+            height: auto;
+            display: block;
         }
 
-        /* Chocolate Drips */
-        .tier::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: -2%;
-            width: 104%;
-            height: 30px;
-            background-image: radial-gradient(circle at 15px 10px, #5D4037 15px, transparent 16px);
-            background-size: 30px 40px;
-            background-repeat: repeat-x;
-            z-index: 2;
-        }
-
-        /* Sizing the 3 Tiers */
-        .tier-top {
-            width: 120px;
-            height: 40px;
-            z-index: 3;
-            box-shadow: 0 40px 0 #3E2723, inset 0 0 15px rgba(0,0,0,0.4); /* Dark chocolate sides */
-            margin-bottom: 40px; /* Space for the 3D shadow */
-        }
-        
-        .tier-middle {
-            width: 200px;
-            height: 50px;
-            z-index: 2;
-            box-shadow: 0 50px 0 #3E2723, inset 0 0 20px rgba(0,0,0,0.5);
-            margin-bottom: 50px;
-        }
-        
-        .tier-bottom {
-            width: 280px;
-            height: 60px;
-            z-index: 1;
-            box-shadow: 0 60px 0 #3E2723, inset 0 0 25px rgba(0,0,0,0.6);
-            margin-bottom: 60px;
-        }
-
-        /* --- Candles (22) --- */
-        .candles {
-            position: absolute;
-            top: -65px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-            z-index: 10;
-        }
-
-        .candle {
-            position: relative;
-            font-size: 60px;
-            color: #9b59b6; /* Purple candles to match the text */
-            text-shadow: 2px 2px 0px #5e1b99;
-            font-family: 'Arial Black', sans-serif;
-        }
-
-        /* Flickering Flames */
+        /* --- Interactive Flames --- */
+        /* You may need to change the 'top' and 'left' percentages 
+           so these perfectly cover the candles in your specific photo */
         .flame {
             position: absolute;
-            top: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 14px;
-            height: 24px;
+            width: 15px;
+            height: 25px;
             background-color: #ffcc00;
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 12px #ff9900, 0 0 24px #ffcc00;
+            box-shadow: 0 0 15px #ff9900, 0 0 30px #ffcc00;
             animation: flicker 0.1s infinite alternate;
+            z-index: 5;
+        }
+
+        #flame1 {
+            top: 25%;  /* Adjust these to move the left flame up/down */
+            left: 46%; /* Adjust these to move the left flame left/right */
+        }
+
+        #flame2 {
+            top: 25%;  /* Adjust these to move the right flame up/down */
+            left: 52%; /* Adjust these to move the right flame left/right */
         }
 
         @keyframes flicker {
-            0% { transform: translateX(-50%) scale(1); opacity: 1; }
-            100% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
-        }
-
-        /* --- Sparklers --- */
-        .sparkler {
-            position: absolute;
-            font-size: 45px;
-            animation: pulse 0.5s infinite alternate;
-            z-index: 0;
-            filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.8));
-        }
-        #s1 { top: 30px; left: -80px; }
-        #s2 { top: 100px; right: -70px; }
-        #s3 { top: 160px; left: -100px; }
-        #s4 { top: 20px; right: -90px; }
-
-        @keyframes pulse {
-            0% { transform: scale(0.8) rotate(-5deg); opacity: 0.8; }
-            100% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.1); opacity: 0.8; }
         }
 
         /* --- Interactive Elements --- */
@@ -152,7 +82,7 @@
         }
 
         button {
-            background-color: #5e1b99;
+            background-color: #8a2be2;
             color: white;
             border: 2px solid #fff;
             padding: 15px 30px;
@@ -161,17 +91,15 @@
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.3);
             font-weight: bold;
-            transition: transform 0.2s;
         }
 
         button:hover {
-            transform: scale(1.05);
-            background-color: #8a2be2;
+            background-color: #5e1b99;
         }
 
         #gift-btn {
             display: none;
-            background-color: #4CAF50; /* Green gift button */
+            background-color: #4CAF50;
             font-size: 1.5rem;
             animation: bounce 1s infinite alternate;
         }
@@ -184,7 +112,6 @@
         #surprise-container {
             display: none;
             margin-top: 20px;
-            z-index: 10;
             padding-bottom: 50px;
         }
 
@@ -196,7 +123,7 @@
         }
 
         #status-text {
-            color: #003366;
+            color: #333;
             font-weight: bold;
             margin-bottom: 15px;
             background: rgba(255, 255, 255, 0.6);
@@ -210,23 +137,10 @@
     <h1>Happy birthday<br>ya habibi</h1>
 
     <div id="cake-wrapper">
-        <div class="sparkler" id="s1">🎇</div>
-        <div class="sparkler" id="s2">🎇</div>
-        <div class="sparkler" id="s3">🎇</div>
-        <div class="sparkler" id="s4">🎇</div>
-
-        <div class="candles">
-            <div class="candle">
-                <div class="flame"></div>2
-            </div>
-            <div class="candle">
-                <div class="flame"></div>2
-            </div>
-        </div>
-
-        <div class="tier tier-top"></div>
-        <div class="tier tier-middle"></div>
-        <div class="tier tier-bottom"></div>
+        <img src="cake-photo.png" alt="Birthday Cake" id="cake-image">
+        
+        <div class="flame" id="flame1"></div>
+        <div class="flame" id="flame2"></div>
     </div>
 
     <div id="controls">
@@ -249,13 +163,11 @@
         const startBtn = document.getElementById('start-mic-btn');
         const giftBtn = document.getElementById('gift-btn');
         const flames = document.querySelectorAll('.flame');
-        const sparklers = document.querySelectorAll('.sparkler');
         const statusText = document.getElementById('status-text');
         const surpriseContainer = document.getElementById('surprise-container');
         const voiceAudio = document.getElementById('voice-audio');
         const cakeWrapper = document.getElementById('cake-wrapper');
 
-        // Start Mic
         startBtn.addEventListener('click', async () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -275,7 +187,6 @@
             }
         });
 
-        // Detect Blowing
         function listenForBlow() {
             const bufferLength = analyser.frequencyBinCount;
             const dataArray = new Uint8Array(bufferLength);
@@ -287,31 +198,30 @@
             }
             let averageVolume = sum / bufferLength;
 
-            // Trigger blow out
-            if (averageVolume > 50) { // Slightly more sensitive so it's easier to blow out
+            if (averageVolume > 50) { 
                 blowOutCandles();
             } else {
                 animationId = requestAnimationFrame(listenForBlow);
             }
         }
 
-        // Blow out action
         function blowOutCandles() {
             cancelAnimationFrame(animationId); 
             if(audioContext) audioContext.close(); 
 
-            // Hide flames and stop sparklers
+            // Hide the code flames
             flames.forEach(flame => flame.style.display = 'none');
-            sparklers.forEach(sparkler => sparkler.style.display = 'none');
             
+            // Optional: apply a dark filter to the cake image so the painted flames look "off"
+            document.getElementById('cake-image').style.filter = "brightness(80%)";
+
             statusText.style.display = 'none';
             giftBtn.style.display = 'inline-block'; 
         }
 
-        // Open Gift
         giftBtn.addEventListener('click', () => {
             giftBtn.style.display = 'none';
-            cakeWrapper.style.display = 'none'; // Hides the cake so the focus is on your picture
+            cakeWrapper.style.display = 'none'; 
             surpriseContainer.style.display = 'block';
             voiceAudio.play();
         });
