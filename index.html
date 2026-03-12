@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy birthday ya habibi ❤️</title>
+    <title>Happy Birthday Habibi 💋 </title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
 
         body {
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            background: linear-gradient(to bottom, #2b1055, #7597de);
             height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             font-family: 'Cairo', sans-serif;
@@ -20,48 +21,66 @@
         }
 
         .container {
-            text-align: center;
             position: relative;
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
         }
 
-        /* --- The Cake --- */
-        .cake {
+        /* --- The Message --- */
+        .message {
+            font-size: 2.5rem;
+            color: #fff;
+            text-shadow: 0 0 10px #ff00de, 0 0 20px #ff00de;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+            z-index: 10;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- The Big Cake --- */
+        .cake-container {
             position: relative;
-            width: 250px;
-            height: 150px;
+            width: 300px;
+            height: 200px;
             margin: 0 auto;
         }
 
         .plate {
-            width: 270px;
-            height: 10px;
+            width: 320px;
+            height: 15px;
             background: #ddd;
             border-radius: 10px;
             position: absolute;
             bottom: -10px;
             left: -10px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
         }
 
         .layer {
             position: absolute;
             width: 100%;
-            height: 60px;
-            background: #f8a5c2;
+            height: 70px;
+            background: #ff7675;
             border-radius: 10px 10px 0 0;
+            box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1);
         }
 
         .layer-bottom {
             bottom: 0;
-            background: #f78fb3;
+            background: #d63031;
         }
 
         .layer-top {
-            bottom: 60px;
-            background: #f78fb3;
-            height: 50px;
+            bottom: 70px;
+            background: #fab1a0;
+            height: 60px;
             width: 90%;
             left: 5%;
-            background: #fff;
             border-radius: 10px 10px 0 0;
             box-shadow: inset 0 -10px 0 rgba(0,0,0,0.1);
         }
@@ -70,37 +89,43 @@
             position: absolute;
             top: 0;
             width: 100%;
-            height: 20px;
-            background: #ff7675;
+            height: 25px;
+            background: #fff;
             border-radius: 10px 10px 0 0;
             z-index: 2;
         }
 
-        /* --- The Candles --- */
-        .candle {
+        /* --- The 22 Candles --- */
+        .candles-row {
             position: absolute;
-            width: 10px;
-            height: 40px;
-            background: repeating-linear-gradient(45deg, #74b9ff, #74b9ff 5px, #fff 5px, #fff 10px);
-            bottom: 110px;
-            z-index: 3;
+            top: 10px; /* On top of the frosting */
+            left: 5%;
+            width: 90%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 5;
         }
 
-        .candle-left { left: 80px; }
-        .candle-right { right: 80px; }
+        .candle {
+            width: 8px;
+            height: 35px;
+            background: repeating-linear-gradient(45deg, #74b9ff, #74b9ff 4px, #fff 4px, #fff 8px);
+            border-radius: 2px;
+            position: relative;
+        }
 
         .flame {
             position: absolute;
-            top: -20px;
+            top: -15px;
             left: 50%;
             transform: translateX(-50%);
-            width: 12px;
-            height: 18px;
+            width: 10px;
+            height: 14px;
             background: #ffeaa7;
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 10px #fdcb6e;
-            animation: flicker 1s infinite alternate;
-            transition: opacity 0.5s;
+            box-shadow: 0 0 5px #fdcb6e;
+            animation: flicker 0.5s infinite alternate;
+            transition: opacity 0.5s ease-out;
         }
 
         .flame.out {
@@ -113,19 +138,27 @@
             100% { transform: translateX(-50%) scale(1.1); opacity: 0.9; }
         }
 
-        /* --- The Microphone --- */
-        .mic-btn {
+        /* --- Controls --- */
+        .controls {
             margin-top: 50px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .mic-btn {
             background: #6c5ce7;
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 15px 40px;
             font-size: 1.2rem;
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
             transition: transform 0.2s;
             font-family: 'Cairo', sans-serif;
+            z-index: 20;
         }
 
         .mic-btn:active {
@@ -135,18 +168,18 @@
         /* --- The Gift Box --- */
         .gift-box {
             position: absolute;
-            top: -100px; /* Hidden initially */
+            top: -150px; /* Hidden above */
             left: 50%;
             transform: translateX(-50%);
-            font-size: 80px;
+            font-size: 100px;
             cursor: pointer;
-            transition: top 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 10;
+            transition: top 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 15;
             animation: bounce 2s infinite;
         }
 
         .gift-box.show {
-            top: -120px;
+            top: -180px; /* Moves down to sit on cake */
         }
 
         @keyframes bounce {
@@ -155,12 +188,6 @@
             60% {transform: translateX(-50%) translateY(-10px);}
         }
 
-        /* --- Text --- */
-        h1 {
-            color: #d63031;
-            margin-bottom: 20px;
-        }
-        
         .hidden { display: none; }
 
     </style>
@@ -168,70 +195,79 @@
 <body>
 
     <div class="container">
+        <!-- Floating Message -->
+        <div class="message">Happy birthday habibi ❤️</div>
+
         <!-- Gift Box (Hidden initially) -->
         <div class="gift-box" id="giftBox" onclick="playAudio()">🎁</div>
 
-        <!-- The Cake -->
-        <div class="cake">
+        <!-- The Big Cake -->
+        <div class="cake-container">
             <div class="plate"></div>
             <div class="layer layer-bottom"></div>
             <div class="layer layer-top">
                 <div class="frosting"></div>
-            </div>
-            
-            <!-- Candles -->
-            <div class="candle candle-left">
-                <div class="flame" id="flame1"></div>
-            </div>
-            <div class="candle candle-right">
-                <div class="flame" id="flame2"></div>
+                <!-- Candles will be injected here by JS -->
+                <div class="candles-row" id="candlesRow"></div>
             </div>
         </div>
 
-        <h1>🎂 22 🎂</h1>
-
         <!-- Microphone Button -->
-        <button class="mic-btn" onclick="blowCandles()">
-            🎙️Blow the candle 
-        </button>
+        <div class="controls">
+            <button class="mic-btn" id="micBtn" onclick="blowCandles()">
+                🎙️ انفخ في الميكروفون
+            </button>
+        </div>
     </div>
 
-    <!-- Audio Element (Replace 'voice.mp3' with your file) -->
+    <!-- Audio Element -->
     <audio id="birthdayAudio" src="voice.mp3"></audio>
 
     <script>
+        // 1. Generate 22 Candles
+        const candlesRow = document.getElementById('candlesRow');
+        for (let i = 0; i < 22; i++) {
+            const candle = document.createElement('div');
+            candle.className = 'candle';
+            
+            const flame = document.createElement('div');
+            flame.className = 'flame';
+            flame.id = `flame-${i}`;
+            
+            candle.appendChild(flame);
+            candlesRow.appendChild(candle);
+        }
+
+        // 2. Blow Candles Function
         function blowCandles() {
             const flames = document.querySelectorAll('.flame');
             const giftBox = document.getElementById('giftBox');
-            const micBtn = document.querySelector('.mic-btn');
+            const micBtn = document.getElementById('micBtn');
 
-            // 1. Turn off flames
+            // Turn off all flames
             flames.forEach(flame => {
                 flame.classList.add('out');
             });
 
-            // 2. Hide button and show gift after a short delay
+            // Hide button and show gift after 1 second
             setTimeout(() => {
-                micBtn.style.display = 'none';
+                micBtn.classList.add('hidden');
                 giftBox.classList.add('show');
             }, 1000);
         }
 
+        // 3. Play Audio Function
         function playAudio() {
             const audio = document.getElementById('birthdayAudio');
             const giftBox = document.getElementById('giftBox');
             
-            // Play the audio
             audio.play().catch(error => {
-                console.log("Audio play failed (user interaction needed):", error);
+                console.log("Audio play failed:", error);
             });
 
-            // Optional: Confetti effect or text change
-            giftBox.innerHTML = "🎉"; // Change icon to celebration
+            // Change icon to celebration
+            giftBox.innerHTML = "🎉";
             giftBox.style.animation = "none";
-            
-            // You can add more logic here, like showing a message
-            // alert("Happy Birthday!"); 
         }
     </script>
 </body>
