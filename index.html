@@ -3,105 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Habibi!</title>
+    <title>Happy Birthday Ya Habibi!</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #ffe6e6;
+            /* Gradient background from your image */
+            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            font-family: 'Arial Black', Impact, sans-serif;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
             min-height: 100vh;
             margin: 0;
-            overflow: hidden;
+            overflow-x: hidden;
+            padding-top: 50px;
         }
 
+        /* Bubbly Text Styling */
         h1 {
-            color: #ff4d4d;
-            font-size: 3rem;
-            margin-bottom: 60px; /* Space for the candles */
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            color: white;
+            font-size: 4rem;
+            margin: 0 20px 60px 20px;
+            letter-spacing: 2px;
+            /* Creates the thick purple outline and shadow */
+            text-shadow: 
+                -3px -3px 0 #8a2be2, 3px -3px 0 #8a2be2, 
+                -3px 3px 0 #8a2be2, 3px 3px 0 #8a2be2,
+                6px 6px 0px #5e1b99;
+            line-height: 1.2;
+            z-index: 10;
         }
 
-        /* --- Custom Rounded Cake CSS --- */
-        #cake {
+        /* --- 3-Tier Chocolate Cake --- */
+        #cake-wrapper {
             position: relative;
-            width: 250px;
-            height: 120px;
-            background-color: #ff9999;
-            border-radius: 20px; /* Makes the cake rounded */
-            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
         }
 
-        /* Frosting on top */
-        #frosting {
+        /* Base styles for all tiers to make them 3D cylinders */
+        .tier {
+            position: relative;
+            background-color: #4a2e1b; /* Top surface color */
+            border-radius: 50%;
+            /* The shadow creates the vertical walls of the cake */
+            box-shadow: 0 40px 0 #362214, inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* Drip effect container */
+        .tier::after {
+            content: '';
             position: absolute;
-            top: -15px;
-            left: 0;
-            width: 100%;
+            top: 20px;
+            left: 5%;
+            width: 90%;
             height: 40px;
-            background-color: #fff;
-            border-radius: 20px 20px 50px 50px; /* Rounded drips */
-            box-shadow: 0 5px 5px rgba(0,0,0,0.05);
+            background-image: radial-gradient(circle at 10px 10px, #4a2e1b 12px, transparent 13px);
+            background-size: 25px 40px;
+            background-repeat: repeat-x;
+            z-index: 2;
         }
 
-        /* 22 Candles */
+        /* Individual Tiers (Stacked from top to bottom) */
+        .tier-top {
+            width: 140px;
+            height: 60px;
+            z-index: 3;
+            margin-bottom: 20px; /* Space for the shadow */
+        }
+        
+        .tier-middle {
+            width: 220px;
+            height: 80px;
+            z-index: 2;
+            margin-top: -30px; /* Overlaps with tier above */
+            box-shadow: 0 50px 0 #362214, inset 0 0 30px rgba(0,0,0,0.6);
+        }
+        
+        .tier-bottom {
+            width: 300px;
+            height: 100px;
+            z-index: 1;
+            margin-top: -30px; /* Overlaps with tier above */
+            box-shadow: 0 60px 0 #362214, inset 0 0 40px rgba(0,0,0,0.7);
+        }
+
+        /* --- Candles (22) --- */
         .candles {
             position: absolute;
-            top: -60px;
+            top: -65px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
-            gap: 20px;
+            gap: 5px;
+            z-index: 10;
         }
 
         .candle {
             position: relative;
-            width: 25px;
-            height: 60px;
-            background: repeating-linear-gradient(
-                45deg,
-                #fff,
-                #fff 10px,
-                #ff4d4d 10px,
-                #ff4d4d 20px
-            );
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            background-color: white;
-            border: 2px solid #fff;
+            font-size: 60px;
+            color: #9b59b6; /* Purple candles */
+            text-shadow: 2px 2px 0px #5e1b99;
+            font-family: 'Arial Black', sans-serif;
         }
 
         .flame {
             position: absolute;
-            top: -30px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
-            width: 16px;
-            height: 26px;
+            width: 12px;
+            height: 20px;
             background-color: #ffcc00;
             border-radius: 50% 50% 20% 20%;
-            box-shadow: 0 0 15px #ff9900, 0 0 30px #ffcc00;
+            box-shadow: 0 0 10px #ff9900, 0 0 20px #ffcc00;
             animation: flicker 0.1s infinite alternate;
-            transition: opacity 0.3s ease;
         }
 
         @keyframes flicker {
             0% { transform: translateX(-50%) scale(1); opacity: 1; }
-            100% { transform: translateX(-50%) scale(1.1); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1.1); opacity: 0.8; }
+        }
+
+        /* --- Sparklers --- */
+        .sparkler {
+            position: absolute;
+            font-size: 40px;
+            animation: pulse 0.5s infinite alternate;
+            z-index: 0;
+        }
+        #s1 { top: 50px; left: -100px; }
+        #s2 { top: 120px; right: -80px; }
+        #s3 { top: 180px; left: -120px; }
+        #s4 { top: 20px; right: -100px; }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.7; }
+            100% { transform: scale(1.2); opacity: 1; }
         }
 
         /* --- Interactive Elements --- */
+        #controls {
+            margin-top: 100px; /* Push down past the 3D cake shadow */
+            z-index: 10;
+        }
+
         button {
-            background-color: #ff4d4d;
+            background-color: #8a2be2;
             color: white;
             border: none;
             padding: 15px 30px;
@@ -109,72 +160,77 @@
             border-radius: 25px;
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-            transition: transform 0.2s;
+            font-weight: bold;
         }
 
         button:hover {
-            transform: scale(1.05);
-            background-color: #ff3333;
+            background-color: #5e1b99;
         }
 
         #gift-btn {
             display: none;
-            font-size: 2rem;
             background-color: #4CAF50;
-            margin-top: 20px;
+            font-size: 1.5rem;
+            animation: bounce 1s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-10px); }
         }
 
         #surprise-container {
             display: none;
             margin-top: 30px;
-            animation: fadeIn 1.5s;
+            z-index: 10;
         }
 
         #surprise-pic {
             max-width: 300px;
             border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
             border: 5px solid white;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
         }
 
         #status-text {
-            color: #666;
-            margin-top: 15px;
-            font-style: italic;
+            color: #333;
+            font-weight: bold;
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Happy birthday habibi ❤️</h1>
+    <h1>Happy birthday<br>ya habibi</h1>
 
-    <div id="cake">
+    <div id="cake-wrapper">
+        <div class="sparkler" id="s1">🎇</div>
+        <div class="sparkler" id="s2">🎇</div>
+        <div class="sparkler" id="s3">🎇</div>
+        <div class="sparkler" id="s4">🎇</div>
+
         <div class="candles">
             <div class="candle">
-                <div class="flame" id="flame1"></div>
-                2
+                <div class="flame"></div>2
             </div>
             <div class="candle">
-                <div class="flame" id="flame2"></div>
-                2
+                <div class="flame"></div>2
             </div>
         </div>
-        <div id="frosting"></div>
+
+        <div class="tier tier-top"></div>
+        <div class="tier tier-middle"></div>
+        <div class="tier tier-bottom"></div>
     </div>
 
-    <p id="status-text">Click the button below to allow the microphone, then blow out the candles!</p>
-    
-    <button id="start-mic-btn">Turn on Microphone</button>
-    <button id="gift-btn">🎁 Open Your Gift!</button>
+    <div id="controls">
+        <p id="status-text">Click below to allow the mic, then blow out the candles!</p>
+        <button id="start-mic-btn">Turn on Microphone 🎤</button>
+        <button id="gift-btn">🎁 Open Your Gift!</button>
+    </div>
 
     <div id="surprise-container">
         <img id="surprise-pic" src="your-picture.jpg" alt="Surprise Photo">
-        
         <audio id="voice-audio" src="your-voice-note.mp3"></audio>
     </div>
 
@@ -187,11 +243,12 @@
         const startBtn = document.getElementById('start-mic-btn');
         const giftBtn = document.getElementById('gift-btn');
         const flames = document.querySelectorAll('.flame');
+        const sparklers = document.querySelectorAll('.sparkler');
         const statusText = document.getElementById('status-text');
         const surpriseContainer = document.getElementById('surprise-container');
         const voiceAudio = document.getElementById('voice-audio');
 
-        // 1. Start Microphone
+        // Start Mic
         startBtn.addEventListener('click', async () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -203,16 +260,15 @@
                 analyser.fftSize = 256;
                 
                 startBtn.style.display = 'none';
-                statusText.innerText = "Listening... Blow into the microphone!";
+                statusText.innerText = "Listening... Blow into the microphone! 💨";
                 
                 listenForBlow();
             } catch (err) {
-                alert("Please allow microphone access so you can blow out the candles!");
-                console.error(err);
+                alert("Please allow microphone access to blow out the candles!");
             }
         });
 
-        // 2. Detect Blowing (Loud noise)
+        // Detect Blowing
         function listenForBlow() {
             const bufferLength = analyser.frequencyBinCount;
             const dataArray = new Uint8Array(bufferLength);
@@ -224,7 +280,7 @@
             }
             let averageVolume = sum / bufferLength;
 
-            // Threshold for blowing (adjust if it's too hard/easy to trigger)
+            // Trigger blow out
             if (averageVolume > 60) {
                 blowOutCandles();
             } else {
@@ -232,25 +288,25 @@
             }
         }
 
-        // 3. Candles Blow Out
+        // Blow out action
         function blowOutCandles() {
             cancelAnimationFrame(animationId); 
             if(audioContext) audioContext.close(); 
 
-            // Hide the flames
-            flames.forEach(flame => {
-                flame.style.display = 'none';
-            });
+            // Hide flames and stop sparklers
+            flames.forEach(flame => flame.style.display = 'none');
+            sparklers.forEach(sparkler => sparkler.style.display = 'none');
             
             statusText.style.display = 'none';
-            giftBtn.style.display = 'inline-block'; // Show the gift button
+            giftBtn.style.display = 'inline-block'; 
         }
 
-        // 4. Click Gift to Reveal
+        // Open Gift
         giftBtn.addEventListener('click', () => {
             giftBtn.style.display = 'none';
+            document.getElementById('cake-wrapper').style.display = 'none'; // Optional: hides cake to focus on gift
             surpriseContainer.style.display = 'block';
-            voiceAudio.play(); // Play your voice note
+            voiceAudio.play();
         });
     </script>
 </body>
