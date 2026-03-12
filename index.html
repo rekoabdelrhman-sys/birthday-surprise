@@ -2,24 +2,29 @@
 <html>
 <head>
 
-<title>Birthday Surprise</title>
+<title>Happy 22 Birthday</title>
 
 <style>
 
 body{
 text-align:center;
 font-family:Arial;
-background:#ffd6e7;
+background:#ffe0ec;
+}
+
+#cake{
+width:420px;
+margin-top:40px;
 }
 
 #gift{
 display:none;
 margin-top:30px;
+cursor:pointer;
 }
 
-#confetti{
-display:none;
-font-size:40px;
+#gift img{
+width:150px;
 }
 
 </style>
@@ -28,32 +33,24 @@ font-size:40px;
 
 <body>
 
-<h1>Make a wish 🎂</h1>
-<p>Blow the candle using your microphone 🕯️</p>
+<h1>Make a wish and blow the candles 🎂</h1>
+<p>Blow into your microphone 🕯️</p>
 
-<img id="cake" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" width="250">
+<img id="cake" src="https://i.imgur.com/8Km9tLL.png">
 
-<div id="confetti">
-🎉🎉🎉🎉🎉🎉🎉
+<div id="gift" onclick="playVoice()">
+
+<h2>Your Birthday Gift 🎁</h2>
+
+<img src="https://cdn-icons-png.flaticon.com/512/869/869636.png">
+
+<p>Click the gift</p>
+
 </div>
 
-<div id="gift">
-
-<h2>Open your gift 🎁</h2>
-
-<button onclick="openGift()">Open</button>
-
-<div id="voice" style="display:none">
-
-<audio controls autoplay>
+<audio id="voice">
 <source src="voice.mp3" type="audio/mpeg">
 </audio>
-
-<p>Happy Birthday ❤️</p>
-
-</div>
-
-</div>
 
 <script>
 
@@ -75,10 +72,6 @@ let volume = data.reduce((a,b)=>a+b)/data.length;
 
 if(volume > 60){
 
-document.getElementById("cake").src="https://media.giphy.com/media/3orieUe6ejxSFxYCXe/giphy.gif";
-
-document.getElementById("confetti").style.display="block";
-
 document.getElementById("gift").style.display="block";
 
 }
@@ -90,9 +83,9 @@ detectBlow();
 
 });
 
-function openGift(){
+function playVoice(){
 
-document.getElementById("voice").style.display="block";
+document.getElementById("voice").play();
 
 }
 
