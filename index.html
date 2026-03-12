@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday Habibi 💋 </title>
+    <title>Happy Birthday my fav dr </title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap');
 
@@ -93,6 +93,20 @@
             background: #fff;
             border-radius: 10px 10px 0 0;
             z-index: 2;
+        }
+
+        /* --- The Number 22 Topper --- */
+        .number-topper {
+            position: absolute;
+            top: -60px; /* Position above the cake */
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 50px;
+            font-weight: 900;
+            color: #fff;
+            text-shadow: 2px 2px 0 #d63031, 0 0 10px #ff00de;
+            z-index: 6;
+            animation: bounce 2s infinite;
         }
 
         /* --- The 22 Candles --- */
@@ -190,6 +204,30 @@
 
         .hidden { display: none; }
 
+        /* --- The Photo Reveal --- */
+        .photo-container {
+            margin-top: 30px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 1s ease;
+            display: none; /* Hidden initially */
+        }
+
+        .photo-container.reveal {
+            opacity: 1;
+            transform: scale(1);
+            display: block;
+        }
+
+        .photo-container img {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 5px solid #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+
     </style>
 </head>
 <body>
@@ -203,6 +241,9 @@
 
         <!-- The Big Cake -->
         <div class="cake-container">
+            <!-- The Number 22 Topper -->
+            <div class="number-topper">22</div>
+
             <div class="plate"></div>
             <div class="layer layer-bottom"></div>
             <div class="layer layer-top">
@@ -215,8 +256,13 @@
         <!-- Microphone Button -->
         <div class="controls">
             <button class="mic-btn" id="micBtn" onclick="blowCandles()">
-                🎙️ انفخ في الميكروفون
+                🎙️ Blow the Candles
             </button>
+        </div>
+
+        <!-- Photo Container (Hidden initially) -->
+        <div class="photo-container" id="photoContainer">
+            <img src="photo.jpg" alt="Us">
         </div>
     </div>
 
@@ -260,14 +306,19 @@
         function playAudio() {
             const audio = document.getElementById('birthdayAudio');
             const giftBox = document.getElementById('giftBox');
+            const photoContainer = document.getElementById('photoContainer');
             
+            // Play the audio
             audio.play().catch(error => {
                 console.log("Audio play failed:", error);
             });
 
-            // Change icon to celebration
+            // Change gift icon to celebration
             giftBox.innerHTML = "🎉";
             giftBox.style.animation = "none";
+
+            // Reveal the photo
+            photoContainer.classList.add('reveal');
         }
     </script>
 </body>
