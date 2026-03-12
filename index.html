@@ -6,8 +6,8 @@
     <title>Happy Birthday Ya Habibi!</title>
     <style>
         body {
-            /* Gradient background from your image */
-            background: linear-gradient(135deg, #e0c3fc 0%, #8ec5fc 100%);
+            /* Green and Blue Theme Background */
+            background: linear-gradient(135deg, #00C9FF 0%, #92FE9D 100%);
             font-family: 'Arial Black', Impact, sans-serif;
             text-align: center;
             display: flex;
@@ -20,22 +20,22 @@
             padding-top: 50px;
         }
 
-        /* Bubbly Text Styling */
+        /* Bubbly Text Styling in Green and Blue */
         h1 {
-            color: white;
+            color: #005c99; /* Deep Blue */
             font-size: 4rem;
             margin: 0 20px 60px 20px;
             letter-spacing: 2px;
-            /* Creates the thick purple outline and shadow */
+            /* Thick lime green outline and shadow */
             text-shadow: 
-                -3px -3px 0 #8a2be2, 3px -3px 0 #8a2be2, 
-                -3px 3px 0 #8a2be2, 3px 3px 0 #8a2be2,
-                6px 6px 0px #5e1b99;
+                -3px -3px 0 #00e676, 3px -3px 0 #00e676, 
+                -3px 3px 0 #00e676, 3px 3px 0 #00e676,
+                6px 6px 0px #00b359;
             line-height: 1.2;
             z-index: 10;
         }
 
-        /* --- 3-Tier Chocolate Cake --- */
+        /* --- 3-Tier Chocolate Cake (Kept exactly as requested) --- */
         #cake-wrapper {
             position: relative;
             display: flex;
@@ -44,16 +44,13 @@
             margin-top: 50px;
         }
 
-        /* Base styles for all tiers to make them 3D cylinders */
         .tier {
             position: relative;
-            background-color: #4a2e1b; /* Top surface color */
+            background-color: #4a2e1b; /* Chocolate top surface */
             border-radius: 50%;
-            /* The shadow creates the vertical walls of the cake */
-            box-shadow: 0 40px 0 #362214, inset 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: 0 40px 0 #362214, inset 0 0 20px rgba(0,0,0,0.5); /* Chocolate sides */
         }
 
-        /* Drip effect container */
         .tier::after {
             content: '';
             position: absolute;
@@ -67,19 +64,18 @@
             z-index: 2;
         }
 
-        /* Individual Tiers (Stacked from top to bottom) */
         .tier-top {
             width: 140px;
             height: 60px;
             z-index: 3;
-            margin-bottom: 20px; /* Space for the shadow */
+            margin-bottom: 20px;
         }
         
         .tier-middle {
             width: 220px;
             height: 80px;
             z-index: 2;
-            margin-top: -30px; /* Overlaps with tier above */
+            margin-top: -30px;
             box-shadow: 0 50px 0 #362214, inset 0 0 30px rgba(0,0,0,0.6);
         }
         
@@ -87,7 +83,7 @@
             width: 300px;
             height: 100px;
             z-index: 1;
-            margin-top: -30px; /* Overlaps with tier above */
+            margin-top: -30px;
             box-shadow: 0 60px 0 #362214, inset 0 0 40px rgba(0,0,0,0.7);
         }
 
@@ -105,8 +101,8 @@
         .candle {
             position: relative;
             font-size: 60px;
-            color: #9b59b6; /* Purple candles */
-            text-shadow: 2px 2px 0px #5e1b99;
+            color: #005c99; /* Blue candles to match theme */
+            text-shadow: 2px 2px 0px #003366;
             font-family: 'Arial Black', sans-serif;
         }
 
@@ -147,29 +143,32 @@
 
         /* --- Interactive Elements --- */
         #controls {
-            margin-top: 100px; /* Push down past the 3D cake shadow */
+            margin-top: 100px;
             z-index: 10;
         }
 
         button {
-            background-color: #8a2be2;
+            background-color: #005c99; /* Blue button */
             color: white;
-            border: none;
+            border: 2px solid #00e676; /* Green border */
             padding: 15px 30px;
             font-size: 1.2rem;
             border-radius: 25px;
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
             font-weight: bold;
+            transition: 0.2s;
         }
 
         button:hover {
-            background-color: #5e1b99;
+            background-color: #00e676; /* Flips to green on hover */
+            color: #005c99;
         }
 
         #gift-btn {
             display: none;
-            background-color: #4CAF50;
+            background-color: #00e676;
+            color: #005c99;
             font-size: 1.5rem;
             animation: bounce 1s infinite alternate;
         }
@@ -183,6 +182,7 @@
             display: none;
             margin-top: 30px;
             z-index: 10;
+            padding-bottom: 50px;
         }
 
         #surprise-pic {
@@ -193,9 +193,12 @@
         }
 
         #status-text {
-            color: #333;
+            color: #003366;
             font-weight: bold;
             margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.5);
+            padding: 10px 20px;
+            border-radius: 20px;
         }
     </style>
 </head>
@@ -247,6 +250,7 @@
         const statusText = document.getElementById('status-text');
         const surpriseContainer = document.getElementById('surprise-container');
         const voiceAudio = document.getElementById('voice-audio');
+        const cakeWrapper = document.getElementById('cake-wrapper');
 
         // Start Mic
         startBtn.addEventListener('click', async () => {
@@ -304,7 +308,7 @@
         // Open Gift
         giftBtn.addEventListener('click', () => {
             giftBtn.style.display = 'none';
-            document.getElementById('cake-wrapper').style.display = 'none'; // Optional: hides cake to focus on gift
+            cakeWrapper.style.display = 'none'; // Hides the cake so the focus is on the picture
             surpriseContainer.style.display = 'block';
             voiceAudio.play();
         });
