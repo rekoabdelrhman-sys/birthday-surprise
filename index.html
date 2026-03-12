@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<title>Birthday Surprise</title>
+
+<style>
+
+body{
+text-align:center;
+font-family:Arial;
+background:#ffd6e7;
+}
+
+#gift{
+display:none;
+margin-top:30px;
+}
+
+#confetti{
+display:none;
+font-size:40px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Make a wish 🎂</h1>
+<p>Blow the candle using your microphone 🕯️</p>
+
+<img id="cake" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" width="250">
+
+<div id="confetti">
+🎉🎉🎉🎉🎉🎉🎉
+</div>
+
+<div id="gift">
+
+<h2>Open your gift 🎁</h2>
+
+<button onclick="openGift()">Open</button>
+
+<div id="voice" style="display:none">
+
+<audio controls autoplay>
+<source src="voice.mp3" type="audio/mpeg">
+</audio>
+
+<p>Happy Birthday ❤️</p>
+
+</div>
+
+</div>
+
+<script>
+
+navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+
+const audioContext = new AudioContext();
+const mic = audioContext.createMediaStreamSource(stream);
+const analyser = audioContext.createAnalyser();
+
+mic.connect(analyser);
+
+const data = new Uint8Array(analyser.frequencyBinCount);
+
+function detectBlow(){
+
+analyser.getByteFrequencyData(data);
+
+let volume = data.reduce((a,b)=>a+b)/data.length;
+
+if(volume > 60){
+
+document.getElementById("cake").src="https://media.giphy.com/media/3orieUe6ejxSFxYCXe/giphy.gif";
+
+document.getElementById("confetti").style.display="block";
+
+document.getElementById("gift").style.display="block";
+
+}
+
+requestAnimationFrame(detectBlow);
+}
+
+detectBlow();
+
+});
+
+function openGift(){
+
+document.getElementById("voice").style.display="block";
+
+}
+
+</script>
+
+</body>
+</html>
