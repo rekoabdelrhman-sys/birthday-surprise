@@ -21,30 +21,85 @@
         h1 {
             color: #ff4d4d;
             font-size: 3rem;
-            margin-bottom: 20px;
+            margin-bottom: 60px; /* Space for the candles */
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
-        /* Cake and Candle Styling */
-        #cake-container {
+        /* --- Custom Rounded Cake CSS --- */
+        #cake {
             position: relative;
-            font-size: 150px;
-            line-height: 1;
+            width: 250px;
+            height: 120px;
+            background-color: #ff9999;
+            border-radius: 20px; /* Makes the cake rounded */
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
         }
 
-        #candle {
+        /* Frosting on top */
+        #frosting {
             position: absolute;
-            top: -40px;
+            top: -15px;
+            left: 0;
+            width: 100%;
+            height: 40px;
+            background-color: #fff;
+            border-radius: 20px 20px 50px 50px; /* Rounded drips */
+            box-shadow: 0 5px 5px rgba(0,0,0,0.05);
+        }
+
+        /* 22 Candles */
+        .candles {
+            position: absolute;
+            top: -60px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 40px;
-            font-weight: bold;
-            color: #ff9900;
-            text-shadow: 0 0 10px #ffcc00;
-            transition: all 0.5s ease;
+            display: flex;
+            gap: 20px;
         }
 
-        /* Interactive Buttons */
+        .candle {
+            position: relative;
+            width: 25px;
+            height: 60px;
+            background: repeating-linear-gradient(
+                45deg,
+                #fff,
+                #fff 10px,
+                #ff4d4d 10px,
+                #ff4d4d 20px
+            );
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            background-color: white;
+            border: 2px solid #fff;
+        }
+
+        .flame {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 16px;
+            height: 26px;
+            background-color: #ffcc00;
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 15px #ff9900, 0 0 30px #ffcc00;
+            animation: flicker 0.1s infinite alternate;
+            transition: opacity 0.3s ease;
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); opacity: 1; }
+            100% { transform: translateX(-50%) scale(1.1); opacity: 0.9; }
+        }
+
+        /* --- Interactive Elements --- */
         button {
             background-color: #ff4d4d;
             color: white;
@@ -53,7 +108,6 @@
             font-size: 1.2rem;
             border-radius: 25px;
             cursor: pointer;
-            margin-top: 20px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.2);
             transition: transform 0.2s;
         }
@@ -63,11 +117,11 @@
             background-color: #ff3333;
         }
 
-        /* Surprise Elements */
         #gift-btn {
             display: none;
             font-size: 2rem;
             background-color: #4CAF50;
+            margin-top: 20px;
         }
 
         #surprise-container {
@@ -99,14 +153,23 @@
 
     <h1>Happy birthday habibi ❤️</h1>
 
-    <div id="cake-container">
-        <div id="candle">22 🕯️</div>
-        🎂
+    <div id="cake">
+        <div class="candles">
+            <div class="candle">
+                <div class="flame" id="flame1"></div>
+                2
+            </div>
+            <div class="candle">
+                <div class="flame" id="flame2"></div>
+                2
+            </div>
+        </div>
+        <div id="frosting"></div>
     </div>
 
-    <p id="status-text">Click the button below to light the candles, then blow into your microphone!</p>
+    <p id="status-text">Click the button below to allow the microphone, then blow out the candles!</p>
     
-    <button id="start-mic-btn">Light the Candles</button>
+    <button id="start-mic-btn">Turn on Microphone</button>
     <button id="gift-btn">🎁 Open Your Gift!</button>
 
     <div id="surprise-container">
@@ -123,7 +186,7 @@
 
         const startBtn = document.getElementById('start-mic-btn');
         const giftBtn = document.getElementById('gift-btn');
-        const candle = document.getElementById('candle');
+        const flames = document.querySelectorAll('.flame');
         const statusText = document.getElementById('status-text');
         const surpriseContainer = document.getElementById('surprise-container');
         const voiceAudio = document.getElementById('voice-audio');
@@ -161,7 +224,7 @@
             }
             let averageVolume = sum / bufferLength;
 
-            // If the volume spikes over a certain threshold, consider it "blown"
+            // Threshold for blowing (adjust if it's too hard/easy to trigger)
             if (averageVolume > 60) {
                 blowOutCandles();
             } else {
@@ -171,12 +234,13 @@
 
         // 3. Candles Blow Out
         function blowOutCandles() {
-            cancelAnimationFrame(animationId); // Stop listening
-            if(audioContext) audioContext.close(); // Turn off mic
+            cancelAnimationFrame(animationId); 
+            if(audioContext) audioContext.close(); 
 
-            candle.innerHTML = "22 💨"; // Change to smoke emoji
-            candle.style.color = "gray";
-            candle.style.textShadow = "none";
+            // Hide the flames
+            flames.forEach(flame => {
+                flame.style.display = 'none';
+            });
             
             statusText.style.display = 'none';
             giftBtn.style.display = 'inline-block'; // Show the gift button
